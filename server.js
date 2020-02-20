@@ -28,6 +28,7 @@ app.use(express.json());
 app.use(cors());
 
 //Routes with Dependency Injection
+app.get('/', (req, res) => res.send('GET / is working'));
 app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt)})
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt, salt)})
 app.get('/profile/:id', (req, res) => {profile.handleGetProfile(req, res, db)})
@@ -35,6 +36,16 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db)})
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
 
 //Server
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`App is running on ${process.env.PORT}`);
-})
+
+// app.listen(process.env.PORT || 3000, () => {
+//     console.log(`App is running on ${process.env.PORT}`);
+// })
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, () => {
+    console.log(`App is running on ${port}`);
+});
