@@ -12,13 +12,22 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 //Database
+// const db = knex({
+//     client: 'pg', //postgres
+//     connection: {
+//       host : '127.0.0.1', //localhost is 127.0.0.1
+//       user : 'postgres',
+//       password : 'dbconnect123',
+//       database : 'facefinder'
+//     }
+//   });
+
 const db = knex({
     client: 'pg', //postgres
     connection: {
-      host : '127.0.0.1', //localhost
-      user : 'postgres',
-      password : 'dbconnect123',
-      database : 'facefinder'
+      host : process.env.DATABASE_URL, //localhost is 127.0.0.1
+      ssl: true,
+
     }
   });
 
