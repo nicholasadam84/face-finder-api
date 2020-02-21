@@ -20,6 +20,7 @@ const handleRegister = (req, res, db, bcrypt, salt) => {
                     joined: new Date()
                 })
                 .then(user => {
+                    res.header("Access-Control-Allow-Origin", "*");
                     res.json(user[0]); 
                 })
         })
